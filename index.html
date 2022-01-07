@@ -1,0 +1,41 @@
+<html>
+
+<head>
+    <title>Pacific jQuery</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+</head>
+
+<body class="bg-primary">
+    <nav class="sticky-top col-12 bg-white p-4 shadow align-items-center justify-content-left d-flex">
+        <div>
+            <i style="font-size: 25px;" class="px-2 text-primary fas fa-cloud-sun "></i>
+        </div>
+        <div class="font-weight-bold">
+            AJAX MAGAZINE
+        </div>
+    </nav>
+
+    <content id="postLists" class="d-flex flex-column col-12 align-items-center justify-content-center mt-5 ">
+
+    </content>
+    <script>
+        $(document).ready(function() {
+            $.ajax({
+                method: 'GET',
+                url: 'https://jsonplaceholder.typicode.com/posts',
+                dataType: 'json',
+            }).done(function(data) {
+                $.map(data, function(post, i) {
+                    $('#postLists').append("<div class='col-sm-12 col-md-8 col-lg-6 mb-2 bg-white rounded p-2 shadow border-bottom border-dark'><div class ='bg-dark mb-2 p-2 rounded text-white font-weight-bold shadow'>" + post.title + "</div><div style='font-size: 14px;' >" + post.body + "</div> </div>");
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>
